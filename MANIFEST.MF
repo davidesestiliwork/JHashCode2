@@ -1,2 +1,2 @@
 Manifest-Version: 1.0
-Main-Class: it.dsestili.jhashcode.gui.MainWindow
+Main-Class: it.dsestili.jhashcode.ui.MainWindow
