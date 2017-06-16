@@ -66,7 +66,7 @@ public class WorkerThread extends Thread implements IProgressListener
 	{
 		try
 		{
-			manageGUI(false);
+			manageUI(false);
 			startTimer();
 			
 			showHash("");
@@ -92,7 +92,7 @@ public class WorkerThread extends Thread implements IProgressListener
 		finally
 		{
 			stopTimer();
-			manageGUI(true);
+			manageUI(true);
 		}
 	}
 
@@ -145,7 +145,7 @@ public class WorkerThread extends Thread implements IProgressListener
 		});
 	}
 	
-	protected void manageGUI(final boolean enabled)
+	protected void manageUI(final boolean enabled)
 	{
 		SwingUtilities.invokeLater(new Runnable() 
 		{

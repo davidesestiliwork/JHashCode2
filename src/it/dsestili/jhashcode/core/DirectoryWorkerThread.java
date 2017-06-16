@@ -44,7 +44,7 @@ public class DirectoryWorkerThread extends WorkerThread implements IScanProgress
 	{
 		try
 		{
-			manageGUI(false);
+			manageUI(false);
 			
 			showHash("");
 			
@@ -117,7 +117,7 @@ public class DirectoryWorkerThread extends WorkerThread implements IScanProgress
 		finally
 		{
 			stopTimer();
-			manageGUI(true);
+			manageUI(true);
 		}
 	}
 
