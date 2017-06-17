@@ -164,7 +164,7 @@ public class MainWindow extends JFrame {
         if (workerThread != null) {
             workerThread.interruptOperation();
             try {
-                workerThread.join();
+                workerThread.join(10000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
