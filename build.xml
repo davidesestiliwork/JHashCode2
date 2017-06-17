@@ -1,0 +1,23 @@
+<?xml version = "1.0" encoding="UTF-8"?>
+
+<project name="JHashCode2" default="deploy" basedir=".">
+   <target name="init">
+      <property name="sourceDir" value="src" />
+      <property name="outputDir" value="classes" />
+   </target>
+   <target name="clean" depends="init">
+      <delete dir="${outputDir}" />
+   </target>
+   <target name="prepare" depends="clean">
+      <mkdir dir="${outputDir}" />
+   	  <copy file="${sourceDir}/MessagesBundle_en_US.properties" todir="${outputDir}" />
+   	  <copy file="${sourceDir}/MessagesBundle_es_ES.properties" todir="${outputDir}" />
+ 	  <copy file="${sourceDir}/MessagesBundle_it_IT.properties" todir="${outputDir}" />
+   </target>
+   <target name="compile" depends="prepare">
+     <javac srcdir="${sourceDir}" destdir="${outputDir}" includeantruntime="false" />
+   </target>
+   <target name="deploy" depends="compile,init">
+	 <jar basedir="${outputDir}" destfile="JHashCode2.jar" compress="true" manifest="./MANIFEST.MF" />
+   </target>
+</project>
