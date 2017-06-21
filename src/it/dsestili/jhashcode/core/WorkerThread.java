@@ -304,7 +304,7 @@ public class WorkerThread extends Thread implements IProgressListener
 			saveHash();
 		}
 
-		protected void saveHash()
+		private void saveHash()
 		{
 			try 
 			{
