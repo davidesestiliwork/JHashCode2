@@ -63,7 +63,7 @@ public class Core
 			int len;
 			long position = 0;
 			
-			while((len = bis.read(buf, 0, buf.length)) != -1 )
+			while((len = bis.read(buf, 0, buf.length)) != -1)
 			{
 				if(interrupt)
 				{
