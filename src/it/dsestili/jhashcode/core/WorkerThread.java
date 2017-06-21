@@ -267,7 +267,7 @@ public class WorkerThread extends Thread implements IProgressListener
 		sma.start();
 	}
 	
-	protected static class ShowMessageAsync extends Thread
+	private static class ShowMessageAsync extends Thread
 	{
 		private final String message;
 		private final String title;
@@ -285,7 +285,7 @@ public class WorkerThread extends Thread implements IProgressListener
 		}
 	}
 	
-	protected static class SaveHashAsync extends Thread
+	private static class SaveHashAsync extends Thread
 	{
 		private final File file;
 		private final String hash;
