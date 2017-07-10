@@ -32,7 +32,7 @@ public abstract class AbstractDirectoryScanner implements DirectoryScanner
 	protected boolean recursively;
 	protected volatile boolean interrupt = false;
 	protected Timer timer;
-	protected int charIndex = 0;
+	protected int charIndex = -1;
 	protected volatile long totalSize = 0;
 	protected volatile int directoriesFound = 0;
 
