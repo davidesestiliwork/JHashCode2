@@ -95,7 +95,7 @@ public class DirectoryWorkerThread extends WorkerThread implements IScanProgress
 				core.addIProgressListener(this);
 
 				Vector<String> info = new Vector<String>();
-				info.add(recursively ? currentFile.getAbsolutePath() : currentFile.getName());
+				info.add(recursively ? Utils.getRelativePath(file, currentFile) : currentFile.getName());
 
 				try
 				{

@@ -244,4 +244,9 @@ public class Utils
 		
 		return result;
 	}
+	
+	public static String getRelativePath(File baseDir, File f)
+	{
+		return f.getAbsolutePath().substring((int) baseDir.getAbsolutePath().length(), (int) f.getAbsolutePath().length());
+	}
 }
