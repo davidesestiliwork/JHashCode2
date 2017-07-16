@@ -1,7 +1,7 @@
 package it.dsestili.jhashcode.test;
 
 /*
-JHashCode a simple hash code generator
+JHashCode2 a simple hash code generator
 Copyright (C) 2017 Davide Sestili
 
 This program is free software: you can redistribute it and/or modify
