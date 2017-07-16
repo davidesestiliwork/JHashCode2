@@ -65,7 +65,7 @@ public class MainWindow extends JFrame {
     private InputPanel inputPanel;
     private StatusPanel statusPanel;
     private JButton btnStart;
-    private static final String NAME_AND_VERSION = "JHashCode";
+    private static final String NAME_AND_VERSION = "JHashCode2";
     private static Locale enLocale, itLocale, esLocale, currentLocale;
     private static ResourceBundle resourceBundle;
     private static String lookAndFeelNotFound;
