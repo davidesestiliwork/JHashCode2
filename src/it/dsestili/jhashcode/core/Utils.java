@@ -247,6 +247,11 @@ public class Utils
 	
 	public static String getRelativePath(File baseDir, File f)
 	{
-		return f.getAbsolutePath().substring((int) baseDir.getAbsolutePath().length(), (int) f.getAbsolutePath().length());
+		return f.getAbsolutePath().substring(baseDir.getAbsolutePath().length(), f.getAbsolutePath().length());
+	}
+	
+	public static String getRelativePath(String baseDir, String f)
+	{
+		return f.substring(baseDir.length(), f.length());
 	}
 }
