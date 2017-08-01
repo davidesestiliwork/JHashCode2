@@ -1,5 +1,3 @@
-package it.dsestili.jhashcode.core;
-
 /*
 JHashCode2 a simple hash code generator
 Copyright (C) 2017 Davide Sestili
@@ -17,6 +15,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+package it.dsestili.jhashcode.core;
 
 import java.io.File;
 
