@@ -35,6 +35,7 @@ public abstract class AbstractDirectoryScanner implements DirectoryScanner
 	protected int charIndex = -1;
 	protected volatile long totalSize = 0;
 	protected volatile int directoriesFound = 0;
+	protected volatile int symbolicLinksFound = 0;
 
 	public List<IScanProgressListener> getListeners()
 	{

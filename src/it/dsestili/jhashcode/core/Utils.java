@@ -23,6 +23,8 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.MessageFormat;
@@ -253,5 +255,11 @@ public class Utils
 	public static String getRelativePath(String baseDir, String f)
 	{
 		return f.substring(baseDir.length(), f.length());
+	}
+
+	public static boolean isSimbolikLink(File file)
+	{
+		Path path = file.toPath();
+		return Files.isSymbolicLink(path);
 	}
 }

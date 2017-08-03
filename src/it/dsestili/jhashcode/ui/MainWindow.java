@@ -74,7 +74,18 @@ public class MainWindow extends JFrame
 	private static String notFound;
 	private static String cancelOperation, cancelOperationTitle;
 	private static String quit, quitTitle;
+	private static boolean excludeSymbolicLinks = true;
 
+	public static boolean getExcludeSymbolicLinks()
+	{
+		return excludeSymbolicLinks;
+	}
+
+	public static void setExcludeSymbolicLinks(boolean exclude)
+	{
+		excludeSymbolicLinks = exclude;
+	}
+	
 	public static JMenuItem getLanguageMenu()
 	{
 		return mnLanguage;
@@ -146,6 +157,24 @@ public class MainWindow extends JFrame
 	 */
 	public static void main(String[] args)
 	{
+		if(args.length == 1)
+		{
+			try
+			{
+				excludeSymbolicLinks = (Integer.parseInt(args[0]) == 0) ? false : true;
+			}
+			catch(NumberFormatException e)
+			{
+				e.printStackTrace();
+				return;
+			}
+		}
+		else
+		{
+			System.out.println("Usage: param 1: exclude symbolic links (0 or 1)");
+			return;
+		}
+		
 		try
 		{
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());

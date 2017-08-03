@@ -24,11 +24,13 @@ public class DirectoryInfo
 {
 	private File[] files;
 	private long totalSize;
+	private int symbolicLinksExcluded;
 
-	public DirectoryInfo(File[] files, long totalSize)
+	public DirectoryInfo(File[] files, long totalSize, int symbolicLinksExcluded)
 	{
 		this.files = files;
 		this.totalSize = totalSize;
+		this.symbolicLinksExcluded = symbolicLinksExcluded;
 	}
 	
 	public File[] getFiles() 
@@ -39,5 +41,10 @@ public class DirectoryInfo
 	public long getTotalSize() 
 	{
 		return totalSize;
+	}
+
+	public int getSymbolicLinksExcluded()
+	{
+		return symbolicLinksExcluded;
 	}
 }

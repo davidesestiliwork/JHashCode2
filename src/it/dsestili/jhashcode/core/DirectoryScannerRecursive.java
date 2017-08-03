@@ -21,6 +21,8 @@ package it.dsestili.jhashcode.core;
 import java.io.File;
 import java.util.Timer;
 
+import it.dsestili.jhashcode.ui.MainWindow;
+
 public class DirectoryScannerRecursive extends AbstractDirectoryScanner
 {
 	private ProgressEvent lastEvent;
@@ -102,6 +104,10 @@ public class DirectoryScannerRecursive extends AbstractDirectoryScanner
 					directoriesFound++;
 					scan(content, false);
 				}
+				else if(MainWindow.getExcludeSymbolicLinks() && Utils.isSimbolikLink(content))
+				{
+					symbolicLinksFound++;
+				}
 				else
 				{
 					files.add(content);
@@ -128,7 +134,7 @@ public class DirectoryScannerRecursive extends AbstractDirectoryScanner
 		timer.cancel();
 		
 		File[] f = files.toArray(new File[0]);
-		DirectoryInfo di = new DirectoryInfo(f, totalSize);
+		DirectoryInfo di = new DirectoryInfo(f, totalSize, symbolicLinksFound);
 		return di;
 	}
 }

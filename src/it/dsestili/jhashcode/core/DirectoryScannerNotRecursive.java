@@ -23,6 +23,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Timer;
 
+import it.dsestili.jhashcode.ui.MainWindow;
+
 public class DirectoryScannerNotRecursive extends AbstractDirectoryScanner
 {
 	private Queue<File> directories = new LinkedList<File>();
@@ -84,15 +86,19 @@ public class DirectoryScannerNotRecursive extends AbstractDirectoryScanner
 				
 				File content = sub[i];
 
-				if(content.isFile())
-				{
-					files.add(content);
-					totalSize += content.length();
-				}
-				else
+				if(content.isDirectory())
 				{
 					directories.add(content);
 					directoriesFound++;
+				}
+				else if(MainWindow.getExcludeSymbolicLinks() && Utils.isSimbolikLink(content))
+				{
+					symbolicLinksFound++;
+				}
+				else
+				{
+					files.add(content);
+					totalSize += content.length();
 				}
 			}
 		}
@@ -109,7 +115,7 @@ public class DirectoryScannerNotRecursive extends AbstractDirectoryScanner
 		timer.cancel();
 		
 		File[] f = files.toArray(new File[0]);
-		DirectoryInfo di = new DirectoryInfo(f, totalSize);
+		DirectoryInfo di = new DirectoryInfo(f, totalSize, symbolicLinksFound);
 		return di;
 	}
 }
