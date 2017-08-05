@@ -49,6 +49,15 @@ public class Utils
 
 	private static final String COMPUTERNAME = "COMPUTERNAME";
 	
+	private static String gpgSignFile, signedWithoutErrors, signedWithErrors;
+
+	static
+	{
+		gpgSignFile = MainWindow.getResourceBundle().getString("utils.gpgSignFile");
+		signedWithoutErrors = MainWindow.getResourceBundle().getString("utils.signedWithoutErrors");
+		signedWithErrors = MainWindow.getResourceBundle().getString("utils.signedWithErrors");
+	}
+	
 	public static String getElapsedTime(long elapsed, boolean millis)
 	{
 		long hours = elapsed / HOUR;
@@ -207,6 +216,23 @@ public class Utils
 				}
 			}
 		}
+
+		if(saved)
+		{
+			int result = JOptionPane.showConfirmDialog(null, gpgSignFile, "gpg", JOptionPane.YES_NO_OPTION);
+			if(result == JOptionPane.YES_OPTION)
+			{
+				int exitCode = gpgSignFile(file.getAbsolutePath());
+				if(exitCode == 0)
+				{
+					JOptionPane.showMessageDialog(null, signedWithoutErrors, "gpg", JOptionPane.INFORMATION_MESSAGE);
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, signedWithErrors, "gpg", JOptionPane.ERROR_MESSAGE);
+				}
+			}				
+		}
 		
 		return saved;
 	}
@@ -261,5 +287,12 @@ public class Utils
 	{
 		Path path = file.toPath();
 		return Files.isSymbolicLink(path);
+	}
+	
+	public static int gpgSignFile(String fileName) throws Exception
+	{
+		ProcessBuilder builder = new ProcessBuilder("gpg", "-b", "-a", fileName);
+		Process process = builder.start();
+		return process.waitFor();
 	}
 }
