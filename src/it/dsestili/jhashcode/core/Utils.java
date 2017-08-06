@@ -28,8 +28,11 @@ import java.nio.file.Path;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.MessageFormat;
+import java.time.ZoneId;
+import java.time.format.TextStyle;
 import java.util.Calendar;
 import java.util.Map;
+import java.util.TimeZone;
 import java.util.Vector;
 
 import javax.swing.JFileChooser;
@@ -147,8 +150,9 @@ public class Utils
 		dateTime += "_" + String.format("%02d", calendar.get(Calendar.HOUR_OF_DAY));
 		dateTime += "-" + String.format("%02d", calendar.get(Calendar.MINUTE));
 		dateTime += "-" + String.format("%02d", calendar.get(Calendar.SECOND));
+		dateTime += "_";
 		
-		String outputFileName = getMachineName() + fileName + mode + dateTime + "." + extension;
+		String outputFileName = getMachineName() + fileName + mode + dateTime + getTimeZone(calendar) + "." + extension;
 		return outputFileName;
 	}
 	
@@ -294,5 +298,12 @@ public class Utils
 		ProcessBuilder builder = new ProcessBuilder("gpg", "-b", "-a", fileName);
 		Process process = builder.start();
 		return process.waitFor();
+	}
+	
+	public static String getTimeZone(Calendar c)
+	{
+		TimeZone tz = c.getTimeZone();
+		ZoneId id = tz.toZoneId();
+		return id.getDisplayName(TextStyle.SHORT, MainWindow.getCurrentLocale());
 	}
 }
