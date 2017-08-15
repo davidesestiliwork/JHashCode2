@@ -42,9 +42,9 @@ import it.dsestili.jhashcode.ui.MainWindow;
 
 public class Utils 
 {
-	private static final int GB = 1073741824;
-	private static final int MB = 1048576;
-	private static final int KB = 1024;
+	private static final int GiB = 1073741824;
+	private static final int MiB = 1048576;
+	private static final int KiB = 1024;
 	
 	private static final long HOUR = 3600000;
 	private static final long MINUTE = 60000;
@@ -86,20 +86,20 @@ public class Utils
 		DecimalFormat myFormatter = new DecimalFormat("###.##");
 		myFormatter.setDecimalFormatSymbols(new DecimalFormatSymbols(MainWindow.getCurrentLocale()));
 		
-		if(size >= GB)
+		if(size >= GiB)
 		{
-			final double gb = (double)size / (double)GB;
-			friendlySize = myFormatter.format(gb) + " GB";
+			final double gb = (double)size / (double)GiB;
+			friendlySize = myFormatter.format(gb) + " GiB";
 		}
-		else if(size >= MB)
+		else if(size >= MiB)
 		{
-			final double mb = (double)size / (double)MB;
-			friendlySize = myFormatter.format(mb) + " MB";
+			final double mb = (double)size / (double)MiB;
+			friendlySize = myFormatter.format(mb) + " MiB";
 		}
-		else if(size >= KB)
+		else if(size >= KiB)
 		{
-			final double kb = (double)size / (double)KB;
-			friendlySize = myFormatter.format(kb) + " KB";
+			final double kb = (double)size / (double)KiB;
+			friendlySize = myFormatter.format(kb) + " KiB";
 		}
 		else
 		{

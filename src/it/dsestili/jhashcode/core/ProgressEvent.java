@@ -93,8 +93,8 @@ public class ProgressEvent extends EventObject
 	{
 		Object[] messageArguments = {
 			    new Integer(pCent),
-			    Utils.getFriendlySize(current),
-			    Utils.getFriendlySize(tot)
+			    current,
+			    tot
 			};
 
 		return Utils.getInternationalizedString(messageArguments, "workerThread.progressEvent");

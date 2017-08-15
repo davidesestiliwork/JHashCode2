@@ -42,7 +42,7 @@ public class ScanProgressEventNR extends ProgressEvent
 		Object[] messageArguments = {
 			    new Integer(filesFound),
 			    new Integer(directoriesFound),
-			    Utils.getFriendlySize(totalSize),
+			    totalSize,
 			    charArray[charIndex]
 			};
 		

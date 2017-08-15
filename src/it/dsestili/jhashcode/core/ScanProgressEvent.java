@@ -45,7 +45,7 @@ public class ScanProgressEvent extends ProgressEvent
 			    new Integer(pCent),
 			    new Long(current),
 			    new Long(tot),
-			    Utils.getFriendlySize(totalSize),
+			    totalSize,
 			    charArray[charIndex]
 			};
 		
