@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 package it.dsestili.jhashcode.core;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.Timer;
 
 import it.dsestili.jhashcode.ui.MainWindow;
@@ -79,6 +80,8 @@ public class DirectoryScannerRecursive extends AbstractDirectoryScanner
 		File[] sub = directory.listFiles();
 		if(sub != null)
 		{
+			Arrays.sort(sub);
+			
 			if(isParent)
 			{
 				generateEvents(0, 0, sub.length);

@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 package it.dsestili.jhashcode.core;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Timer;
@@ -63,7 +64,7 @@ public class DirectoryScannerNotRecursive extends AbstractDirectoryScanner
 		{
 			File currentDirectory = null;
 
-			while( (currentDirectory = directories.poll()) != null )
+			while((currentDirectory = directories.poll()) != null)
 			{
 				getFilesAndFolders(currentDirectory);
 			}
@@ -76,6 +77,8 @@ public class DirectoryScannerNotRecursive extends AbstractDirectoryScanner
 		
 		if(sub != null)
 		{
+			Arrays.sort(sub);
+			
 			for(int i = 0; i < sub.length; i++)
 			{
 				if(interrupt)
