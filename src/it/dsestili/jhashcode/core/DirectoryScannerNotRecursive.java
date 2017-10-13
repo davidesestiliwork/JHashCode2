@@ -98,6 +98,10 @@ public class DirectoryScannerNotRecursive extends AbstractDirectoryScanner
 				{
 					symbolicLinksFound++;
 				}
+				else if(MainWindow.getExcludeHiddenFiles() && Utils.isHidden(content))
+				{
+					hiddenFilesFound++;
+				}
 				else
 				{
 					files.add(content);
@@ -118,7 +122,7 @@ public class DirectoryScannerNotRecursive extends AbstractDirectoryScanner
 		timer.cancel();
 		
 		File[] f = files.toArray(new File[0]);
-		DirectoryInfo di = new DirectoryInfo(f, totalSize, symbolicLinksFound);
+		DirectoryInfo di = new DirectoryInfo(f, totalSize, symbolicLinksFound, hiddenFilesFound);
 		return di;
 	}
 }

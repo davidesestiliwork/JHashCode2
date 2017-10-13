@@ -74,16 +74,26 @@ public class MainWindow extends JFrame
 	private static String notFound;
 	private static String cancelOperation, cancelOperationTitle;
 	private static String quit, quitTitle;
-	private static boolean excludeSymbolicLinks = true;
+	private static boolean excludeSymbolicLinks = true, excludeHiddenFiles = true;
 
 	public static boolean getExcludeSymbolicLinks()
 	{
 		return excludeSymbolicLinks;
 	}
 
+	public static boolean getExcludeHiddenFiles()
+	{
+		return excludeHiddenFiles;
+	}
+	
 	public static void setExcludeSymbolicLinks(boolean exclude)
 	{
 		excludeSymbolicLinks = exclude;
+	}
+
+	public static void setExcludeHiddenFiles(boolean exclude)
+	{
+		excludeHiddenFiles = exclude;
 	}
 	
 	public static JMenuItem getLanguageMenu()
@@ -157,7 +167,7 @@ public class MainWindow extends JFrame
 	 */
 	public static void main(String[] args)
 	{
-		if(args.length == 1)
+		if(args.length == 2)
 		{
 			try
 			{
@@ -168,10 +178,20 @@ public class MainWindow extends JFrame
 				e.printStackTrace();
 				return;
 			}
+			
+			try
+			{
+				excludeHiddenFiles = (Integer.parseInt(args[1]) == 0) ? false : true;
+			}
+			catch(NumberFormatException e)
+			{
+				e.printStackTrace();
+				return;
+			}
 		}
 		else
 		{
-			System.out.println("Usage: param 1: exclude symbolic links (0 or 1)");
+			System.out.println("Usage: param 1: exclude symbolic links (0 or 1), param 2: exclude hidden files (0 or 1)");
 			return;
 		}
 		
@@ -366,6 +386,15 @@ public class MainWindow extends JFrame
 			}
 		});
 		mnLanguage.add(mnEnglish);
+		mnSpanish = new JMenuItem("Espanol");
+		mnSpanish.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				setSpanishLanguage();
+			}
+		});
+		mnLanguage.add(mnSpanish);
 		mnItalian = new JMenuItem("Italian");
 		mnItalian.addActionListener(new ActionListener()
 		{
@@ -375,15 +404,6 @@ public class MainWindow extends JFrame
 			}
 		});
 		mnLanguage.add(mnItalian);
-		mnSpanish = new JMenuItem("Espa�ol");
-		mnSpanish.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
-			{
-				setSpanishLanguage();
-			}
-		});
-		mnLanguage.add(mnSpanish);
 		mnNewMenu = new JMenu("   ?   ");
 		menuBar.add(mnNewMenu);
 		menuAbout = new JMenuItem("About");

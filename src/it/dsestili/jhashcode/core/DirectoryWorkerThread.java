@@ -74,13 +74,12 @@ public class DirectoryWorkerThread extends WorkerThread implements IScanProgress
 			DirectoryInfo di = scanner.getFiles();
 			File[] files = di.getFiles();
 			totalSize = di.getTotalSize();
-			int symbolicLinksExcluded = di.getSymbolicLinksExcluded();
 
-			if(symbolicLinksExcluded > 0)
+			if(di.getSymbolicLinksExcluded() > 0 || di.getHiddenFilesExcluded() > 0)
 			{
-				Object[] arguments = { symbolicLinksExcluded };
-				String symbolicLinkExcludedMessage = Utils.getInternationalizedString(arguments, "workedThread.symbolicLinkExcluded.message");
-				String symbolicLinkExcludedTitle = MainWindow.getResourceBundle().getString("workerThread.symbolicLinkExcluded.message.title");
+				Object[] arguments = { di.getSymbolicLinksExcluded(), di.getHiddenFilesExcluded() };
+				String symbolicLinkExcludedMessage = Utils.getInternationalizedString(arguments, "workedThread.excluded.message");
+				String symbolicLinkExcludedTitle = MainWindow.getResourceBundle().getString("workerThread.excluded.message.title");
 				showMessageAsync(symbolicLinkExcludedMessage, symbolicLinkExcludedTitle);
 			}
 			

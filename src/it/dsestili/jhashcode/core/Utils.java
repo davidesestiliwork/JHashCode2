@@ -293,6 +293,12 @@ public class Utils
 		return Files.isSymbolicLink(path);
 	}
 	
+	public static boolean isHidden(File file) throws IOException
+	{
+		Path path = file.toPath();
+		return Files.isHidden(path);
+	}
+	
 	public static int gpgSignFile(String fileName) throws Exception
 	{
 		ProcessBuilder builder = new ProcessBuilder("gpg", "-b", "-a", fileName);
