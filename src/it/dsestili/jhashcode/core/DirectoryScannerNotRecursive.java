@@ -89,18 +89,18 @@ public class DirectoryScannerNotRecursive extends AbstractDirectoryScanner
 				
 				File content = sub[i];
 
-				if(content.isDirectory())
-				{
-					directories.add(content);
-					directoriesFound++;
-				}
-				else if(MainWindow.getExcludeSymbolicLinks() && Utils.isSimbolikLink(content))
+				if(MainWindow.getExcludeSymbolicLinks() && Utils.isSimbolikLink(content))
 				{
 					symbolicLinksFound++;
 				}
 				else if(MainWindow.getExcludeHiddenFiles() && Utils.isHidden(content))
 				{
 					hiddenFilesFound++;
+				}
+				else if(content.isDirectory())
+				{
+					directories.add(content);
+					directoriesFound++;
 				}
 				else
 				{
