@@ -77,8 +77,6 @@ public class DirectoryScannerNotRecursive extends AbstractDirectoryScanner
 		
 		if(sub != null)
 		{
-			Arrays.sort(sub);
-			
 			for(int i = 0; i < sub.length; i++)
 			{
 				if(interrupt)
@@ -122,6 +120,9 @@ public class DirectoryScannerNotRecursive extends AbstractDirectoryScanner
 		timer.cancel();
 		
 		File[] f = files.toArray(new File[0]);
+
+		Arrays.sort(f);
+
 		DirectoryInfo di = new DirectoryInfo(f, totalSize, symbolicLinksFound, hiddenFilesFound);
 		return di;
 	}
