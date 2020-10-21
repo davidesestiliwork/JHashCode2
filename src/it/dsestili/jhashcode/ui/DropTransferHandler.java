@@ -61,7 +61,7 @@ public class DropTransferHandler extends TransferHandler
 				{
 					String str = (String)t.getTransferData(flavor);
 					
-					field.setText(str.replace("file://", ""));
+					field.setText(str.replace("file://", "").replace("%20", " "));
 					
 					return true;
 				}
