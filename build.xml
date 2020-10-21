@@ -15,7 +15,7 @@
  	  <copy file="${sourceDir}/MessagesBundle_it_IT.properties" todir="${outputDir}" />
    </target>
    <target name="compile" depends="prepare">
-     <javac srcdir="${sourceDir}" destdir="${outputDir}" includeantruntime="false" />
+     <javac srcdir="${sourceDir}" destdir="${outputDir}" includeantruntime="false" target="1.8"/>
    </target>
    <target name="deploy" depends="compile,init">
 	 <jar basedir="${outputDir}" destfile="JHashCode2.jar" compress="true" manifest="./MANIFEST.MF" />
