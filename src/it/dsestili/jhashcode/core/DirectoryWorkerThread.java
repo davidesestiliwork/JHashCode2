@@ -27,6 +27,7 @@ import javax.swing.SwingUtilities;
 
 import it.dsestili.jhashcode.ui.ChooseModeDialog;
 import it.dsestili.jhashcode.ui.UIFactory;
+import it.dsestili.jhashcode.ui.UIFactory.MainWindowFactory;
 import it.dsestili.jhashcode.ui.HashListWindow;
 import it.dsestili.jhashcode.ui.MainWindow;
 
@@ -93,11 +94,18 @@ public class DirectoryWorkerThread extends WorkerThread implements IScanProgress
 			totFiles = files.length;
 			
 			startTime = System.currentTimeMillis();
-			
+
+			String folderToExclude = MainWindowFactory.getInstance().getFolderToExclude();
+
 			for(int i = 0; i < files.length; i++)
 			{
 				currentIndex = i;
 				currentFile = files[i];
+
+				if(folderToExclude != null && (!folderToExclude.trim().equals("")) && currentFile.getAbsolutePath().startsWith(folderToExclude))
+				{
+					continue;
+				}
 				
 				core = new Core(currentFile, algorithm);
 				core.addIProgressListener(this);

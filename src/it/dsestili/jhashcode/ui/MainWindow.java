@@ -75,7 +75,13 @@ public class MainWindow extends JFrame
 	private static String cancelOperation, cancelOperationTitle;
 	private static String quit, quitTitle;
 	private static boolean excludeSymbolicLinks = true, excludeHiddenFiles = true;
+	private static String folderToExclude;
 
+	public static String getFolderToExclude()
+	{
+		return folderToExclude;
+	}
+	
 	public static boolean getExcludeSymbolicLinks()
 	{
 		return excludeSymbolicLinks;
@@ -167,7 +173,7 @@ public class MainWindow extends JFrame
 	 */
 	public static void main(String[] args)
 	{
-		if(args.length == 2)
+		if(args.length >= 2)
 		{
 			try
 			{
@@ -188,10 +194,15 @@ public class MainWindow extends JFrame
 				e.printStackTrace();
 				return;
 			}
+			
+			if(args.length > 2)
+			{
+				folderToExclude = args[2];
+			}
 		}
 		else
 		{
-			System.out.println("Usage: param 1: exclude symbolic links (0 or 1), param 2: exclude hidden files (0 or 1)");
+			System.out.println("Usage: param 1: exclude symbolic links (0 or 1), param 2: exclude hidden files (0 or 1), param 3: folder to exclude");
 			return;
 		}
 		
