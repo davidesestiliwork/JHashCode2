@@ -201,7 +201,7 @@ public class Utils
 			for(Vector<String> info : hashList)
 			{
 				String line = info.get(1) + " *" + info.get(0) + "\n";
-				byte[] data = line.getBytes();
+				byte[] data = line.getBytes("UTF-8");
 				bos.write(data, 0, data.length);
 			}
 		}
