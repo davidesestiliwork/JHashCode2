@@ -9,6 +9,6 @@ New in release 2:
 - Can sign file with GnuPG (if installed and key pair exists)
 - Can exclude a single folder
 
-Usage: param 1: exclude symbolic links (0 or 1), param 2: exclude hidden files (0 or 1), param 3: folder to exclude
+Usage: param 1: exclude symbolic links (0 or 1), param 2: exclude hidden files (0 or 1), param 3: folder to exclude (optional)
 
 Example: java -jar JHashCode2.jar 1 1 /home/davide/snap
