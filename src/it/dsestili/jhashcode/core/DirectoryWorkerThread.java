@@ -95,9 +95,13 @@ public class DirectoryWorkerThread extends WorkerThread implements IScanProgress
 			
 			startTime = System.currentTimeMillis();
 
+			String[] foldersToExclude = {};
 			String folderToExclude = MainWindowFactory.getInstance().getFolderToExclude();
-			String[] foldersToExclude = folderToExclude.split(",");
-
+			if(folderToExclude != null)
+			{
+				foldersToExclude = folderToExclude.split(",");
+			}
+			
 			for(int i = 0; i < files.length; i++)
 			{
 				currentIndex = i;

@@ -202,7 +202,7 @@ public class MainWindow extends JFrame
 		}
 		else
 		{
-			System.out.println("Usage: param 1: exclude symbolic links (0 or 1) (mandatory), param 2: exclude hidden files (0 or 1) (mandatory), param 3: folder to exclude (optional)");
+			System.out.println("Usage: param 1: exclude symbolic links (0 or 1) [mandatory], param 2: exclude hidden files (0 or 1) [mandatory], param 3: folders to exclude [optional]");
 			return;
 		}
 		
