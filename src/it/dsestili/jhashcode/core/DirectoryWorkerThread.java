@@ -102,6 +102,13 @@ public class DirectoryWorkerThread extends WorkerThread implements IScanProgress
 				foldersToExclude = folderToExclude.split(",");
 			}
 			
+			String[] textsToExclude = {};
+			String textToExclude = MainWindowFactory.getInstance().getTextToExclude();
+			if(textToExclude != null)
+			{
+				textsToExclude = textToExclude.split(",");
+			}
+			
 			for(int i = 0; i < files.length; i++)
 			{
 				currentIndex = i;
@@ -119,6 +126,22 @@ public class DirectoryWorkerThread extends WorkerThread implements IScanProgress
 				for(String fte : foldersToExclude)
 				{
 					if(fte != null && (!fte.trim().equals("")) && currentFile.getAbsolutePath().startsWith(fte))
+					{
+						cont = true;
+						break;
+					}
+				}
+				
+				if(cont)
+				{
+					continue;
+				}
+
+				cont = false;
+				
+				for(String tte : textsToExclude)
+				{
+					if(tte != null && (!tte.trim().equals("")) && currentFile.getAbsolutePath().contains(tte))
 					{
 						cont = true;
 						break;

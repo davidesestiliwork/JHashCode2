@@ -7,8 +7,8 @@ New in release 2:
 - Can exclude symbolic links
 - Can exclude hidden files
 - Can sign file with GnuPG (if installed and key pair exists)
-- Can exclude multiple folders
+- Can exclude multiple folders and multiple texts
 
-Usage: param 1: exclude symbolic links (0 or 1) [mandatory], param 2: exclude hidden files (0 or 1) [mandatory], param 3: folders to exclude [optional]
+Usage: param 1: exclude symbolic links (0 or 1) [mandatory], param 2: exclude hidden files (0 or 1) [mandatory], param 3: folders to exclude [optional], param 4: texts to exclude [optional]
 
-Example: java -jar JHashCode2.jar 1 1 /home/davide/snap,/home/davide/Video,/home/davide/vmware
+Example: java -jar JHashCode2.jar 1 1 /home/davide/snap,/home/davide/Video,/home/davide/vmware HomeBank
