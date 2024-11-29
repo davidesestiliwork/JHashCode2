@@ -46,6 +46,9 @@ public class DirectoryWorkerThread extends WorkerThread implements IScanProgress
 	private String avg;
 	private volatile String avgProcessingRate = "";
 	private ChooseModeDialog dialog;
+	private int filesExcludedWithOptionalParameter = 0;
+	private long filesExcludedWithOptionalParameterSize = 0L;
+	private DirectoryInfo di;
 	
 	public DirectoryWorkerThread(File file)	
 	{
@@ -72,7 +75,7 @@ public class DirectoryWorkerThread extends WorkerThread implements IScanProgress
 			
 			startTimer();
 
-			DirectoryInfo di = scanner.getFiles();
+			di = scanner.getFiles();
 			File[] files = di.getFiles();
 			totalSize = di.getTotalSize();
 
@@ -134,6 +137,8 @@ public class DirectoryWorkerThread extends WorkerThread implements IScanProgress
 				
 				if(cont)
 				{
+					filesExcludedWithOptionalParameter++;
+					filesExcludedWithOptionalParameterSize += currentFile.length();
 					continue;
 				}
 
@@ -150,6 +155,8 @@ public class DirectoryWorkerThread extends WorkerThread implements IScanProgress
 				
 				if(cont)
 				{
+					filesExcludedWithOptionalParameter++;
+					filesExcludedWithOptionalParameterSize += currentFile.length();
 					continue;
 				}
 				
@@ -196,11 +203,24 @@ public class DirectoryWorkerThread extends WorkerThread implements IScanProgress
 		}
 		finally
 		{
+			showFilesExcludedMessage();
 			stopTimer();
 			manageUI(true);
 		}
 	}
 
+	private void showFilesExcludedMessage()
+	{
+		if(filesExcludedWithOptionalParameter > 0)
+		{
+			final long pCentExcluded = (filesExcludedWithOptionalParameterSize * 100L) / di.getTotalSize();
+			Object[] arguments = { filesExcludedWithOptionalParameter, Utils.getFriendlySize(filesExcludedWithOptionalParameterSize), pCentExcluded };
+			String filesExcludedWithOptionalParameterMessage = Utils.getInternationalizedString(arguments, "workerThread.filesExcludedWithOptionalParameter.message");
+			String filesExcludedWithOptionalParameterTitle = MainWindow.getResourceBundle().getString("workerThread.filesExcludedWithOptionalParameter.message.title");
+			showMessageAsync(filesExcludedWithOptionalParameterMessage, filesExcludedWithOptionalParameterTitle);
+		}
+	}
+	
 	private void chooseMode() throws Throwable
 	{
 		dialog = new ChooseModeDialog();
