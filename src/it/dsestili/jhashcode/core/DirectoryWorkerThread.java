@@ -211,7 +211,7 @@ public class DirectoryWorkerThread extends WorkerThread implements IScanProgress
 
 	private void showFilesExcludedMessage()
 	{
-		if(filesExcludedWithOptionalParameter > 0)
+		if(filesExcludedWithOptionalParameter > 0 && di.getTotalSize() > 0)
 		{
 			final long pCentExcluded = (filesExcludedWithOptionalParameterSize * 100L) / di.getTotalSize();
 			Object[] arguments = { filesExcludedWithOptionalParameter, Utils.getFriendlySize(filesExcludedWithOptionalParameterSize), pCentExcluded };
